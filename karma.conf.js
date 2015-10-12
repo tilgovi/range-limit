@@ -1,7 +1,14 @@
 // Karma configuration
 
-var istanbul = require('browserify-istanbul');
-var isparta = require('isparta');
+var babelify = require('babelify').configure({
+  auxiliaryCommentBefore: 'istanbul ignore next',
+  loose: 'all'
+});
+
+var istanbul = require('browserify-babel-istanbul')({
+  ignore: ['**/node_modules/**', '**/test/**']
+});
+
 
 module.exports = function(config) {
   config.set({
@@ -15,13 +22,7 @@ module.exports = function(config) {
 
     browserify: {
       debug: true,
-      transform: [
-        ['babelify', {loose: 'all'}],
-        istanbul({
-          instrumenter: isparta,
-          ignore: ['**/node_modules/**', '**/test/**']
-        })
-      ]
+      transform: [babelify, istanbul]
     }
   })
 }
