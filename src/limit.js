@@ -13,7 +13,7 @@ export default function limit(range, bounds) {
 
   if (!contains(bounds, ec)) {
     ec = bounds
-    eo = bounds.length || bounds.childNodes.length
+    eo = (bounds.nodeType === 3) ? bounds.length : bounds.childNodes.length
   }
 
   range.setStart(sc, so)
