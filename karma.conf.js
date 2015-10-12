@@ -9,7 +9,10 @@ module.exports = function(config) {
     files: ['test/*.js'],
     frameworks: ['browserify', 'chai', 'mocha'],
     preprocessors: {'test/*.js': ['browserify']},
-    reporters: ['progress', 'coverage'],
+
+    reporters: ['progress', 'coverage', 'coveralls'],
+    coverageReporter: {type: 'lcov'},
+
     browserify: {
       debug: true,
       transform: [
