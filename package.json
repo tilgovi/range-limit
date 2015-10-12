@@ -1,6 +1,6 @@
 {
   "name": "range-limit",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Limit a DOM Range to a bounding Node.",
   "main": "index.js",
   "scripts": {
