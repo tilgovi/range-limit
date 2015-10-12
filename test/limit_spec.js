@@ -85,4 +85,27 @@ describe('limit', () => {
     assert.equal(range.endContainer, div.childNodes[1])
     assert.equal(range.endOffset, 1)
   })
+
+  it('should select a whole TextNode', () => {
+    let div = document.createElement('div')
+    div.innerHTML = '<p>hello</p>'
+
+    let range = document.createRange()
+    range.setStart(div, 0)
+    range.setEnd(div, 1)
+
+    assert.equal(range.commonAncestorContainer, div)
+    assert.equal(range.startContainer, div)
+    assert.equal(range.startOffset, 0)
+    assert.equal(range.endContainer, div)
+    assert.equal(range.endOffset, 1)
+
+    limit(range, div.firstChild.firstChild)
+
+    assert.equal(range.commonAncestorContainer, div.firstChild.firstChild)
+    assert.equal(range.startContainer, div.firstChild.firstChild)
+    assert.equal(range.startOffset, 0)
+    assert.equal(range.endContainer, div.firstChild.firstChild)
+    assert.equal(range.endOffset, 5)
+  })
 })
