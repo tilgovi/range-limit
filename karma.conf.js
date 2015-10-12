@@ -1,12 +1,13 @@
 // Karma configuration
 
 var babelify = require('babelify').configure({
-  auxiliaryCommentBefore: 'istanbul ignore next',
   loose: 'all'
 });
 
-var istanbul = require('browserify-babel-istanbul')({
-  ignore: ['**/node_modules/**', '**/test/**']
+var isparta = require('isparta');
+var istanbul = require('browserify-istanbul')({
+  ignore: ['**/node_modules/**', '**/test/**'],
+  instrumenter: isparta
 });
 
 
@@ -22,7 +23,7 @@ module.exports = function(config) {
 
     browserify: {
       debug: true,
-      transform: [babelify, istanbul]
+      transform: [istanbul, babelify]
     }
   })
 }
