@@ -1,9 +1,6 @@
 // Karma configuration
 
-var babelify = require('babelify').configure({
-  loose: 'all'
-});
-
+var babelify = require('babelify');
 var isparta = require('isparta');
 var istanbul = require('browserify-istanbul')({
   ignore: ['**/node_modules/**', '**/test/**'],
